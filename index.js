@@ -20,11 +20,11 @@ app.get('/', function(request, response)
 	response.send("Why Hello There...");
 });
 
-app.get('/whatdo', function(request, response)
+app.post('/whatdo', function(request, response)
 {
 	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
 	var resp = new twilio.TwimlResponse();
-	
+
 	resp.say({voice:'woman'}, "Your Uber driver will pick you up at " /*+ streetNumber + " " + street + */+ "Island Blvd" +  " at " + newDateObj.toLocaleString());
 	response.writeHead(200, 
 	{
