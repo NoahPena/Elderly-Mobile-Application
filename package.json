@@ -13,8 +13,7 @@
     "ejs": "2.4.1",
     "express": "4.13.3",
     "body-parser": "1.15.2",
-    "morgan": "^1.5.1",
-    "twilio": "^1.10.0"
+    "twilio": "1.11.1"
   },
   "repository": {
     "type": "git",
