@@ -54,13 +54,6 @@ app.post('/', function(request, response)
   		}
 	});
 
-	
-	client.makeCall(
-	{
-		to:'',
-		from:'',
-		url:''
-	});
 });
 
 app.listen(app.get('port'), function()
