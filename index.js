@@ -55,8 +55,8 @@ app.post('/', function(request, response)
   			{
 
     			//executed when the call has been initiated.
-    			console.log(responseData.from); // outputs "+14506667788"
-
+    			//console.log(responseData.from); // outputs "+14506667788"
+    			console.log(err);
 			});
 
   		}
