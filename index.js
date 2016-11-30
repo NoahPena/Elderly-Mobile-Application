@@ -13,7 +13,10 @@ app.post('/', function(request, response)
 	console.log(request.body);
 });
 
-app.listen(8080 || process.env.PORT);
+app.listen(8080 || process.env.PORT, function()
+	{
+		console.log("Now listening on port " + 8080 || process.env.PORT);
+	});
 
 // //Lets require/import the HTTP module
 // var http = require('http');
