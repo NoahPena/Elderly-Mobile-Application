@@ -51,7 +51,13 @@ app.post('/', function(request, response)
   				to:phoneNumber,
   				from:+12569739465,
   				url:resp
-  			});
+  			}, function(err, responseData) 
+  			{
+
+    			//executed when the call has been initiated.
+    			console.log(responseData.from); // outputs "+14506667788"
+
+			}););
 
   		}
 	});
