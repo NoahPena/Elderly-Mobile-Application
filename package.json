@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "body-parser": "1.15.2"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "body-parser"
   ],
   "license": "MIT"
 }
