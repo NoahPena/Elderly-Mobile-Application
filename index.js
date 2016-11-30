@@ -35,10 +35,12 @@ app.post('/', function(request, response)
 
 	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
 
-	Request('http://api.geonames.org/findNearestAddressJSON?lat=' + longititude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
+	Request('http://api.geonames.org/findNearestAddressJSON?lat=' + latitude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
 	{
   		if(!error)
   		{
+  			console.log(body);
+
   			var street = body.address.street;
   			var streetNumber = body.address.streetNumber;
 
