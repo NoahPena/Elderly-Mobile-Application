@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 
-//app.use(express.bodyParser());
+app.set('port', (process.env.PORT || 8080));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response)
 {
@@ -13,9 +14,9 @@ app.post('/', function(request, response)
 	console.log(request.body);
 });
 
-app.listen(8080 || process.env.PORT, function()
+app.listen(app.get('port'), function()
 	{
-		console.log("Now listening on port " + 8080 || process.env.PORT);
+		console.log("Now listening on port " + app.get('port'));
 	});
 
 // //Lets require/import the HTTP module
