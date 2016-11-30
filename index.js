@@ -44,13 +44,22 @@ app.post('/', function(request, response)
   			var street = body.street;
   			var streetNumber = body.streetNumber;
 
-  			resp.say({voice:'woman'}, "Your Uber driver will pick you up at " + streetNumber + " " + street + " at " + newDateObj.toLocaleString());
+  			
+  			app.get('/whatdo', function(request, response)
+  			{
+  				resp.say({voice:'woman'}, "Your Uber driver will pick you up at " + streetNumber + " " + street + " at " + newDateObj.toLocaleString());
+  				response.writeHead(200, 
+  				{
+  					'Content-Type':'text/xml'
+  				});
+  				res.end(resp.toString());
+  			})
 
   			client.makeCall(
   			{
   				to:phoneNumber,
   				from:'+12569739465',
-  				url:resp
+  				url: 'http://elderly-mobile.herokuapp.com/whatdo'
   			}, function(err, responseData) 
   			{
 
