@@ -20,6 +20,19 @@ app.get('/', function(request, response)
 	response.send("Why Hello There...");
 });
 
+app.get('/whatdo', function(request, response)
+{
+	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
+	var resp = new twilio.TwimlResponse();
+	
+	resp.say({voice:'woman'}, "Your Uber driver will pick you up at " /*+ streetNumber + " " + street + */+ "Island Blvd" +  " at " + newDateObj.toLocaleString());
+	response.writeHead(200, 
+	{
+		'Content-Type':'text/xml'
+	});
+	response.end(resp.toString());
+})
+
 app.post('/', function(request, response)
 {
 	console.log(request.body);
@@ -29,12 +42,11 @@ app.post('/', function(request, response)
 	var latitude = request.body.latitude;
 	var longititude = request.body.longititude;
 
-	var resp = new twilio.TwimlResponse();
+	
 
 	//getUber();
 
-	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
-
+	
 	Request('http://api.geonames.org/findNearestAddressJSON?lat=' + latitude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
 	{
   		if(!error)
@@ -45,15 +57,7 @@ app.post('/', function(request, response)
   			var streetNumber = body.streetNumber;
 
   			
-  			app.get('/whatdo', function(request, response)
-  			{
-  				resp.say({voice:'woman'}, "Your Uber driver will pick you up at " /*+ streetNumber + " " + street + */+ "Island Blvd" +  "at " + newDateObj.toLocaleString());
-  				response.writeHead(200, 
-  				{
-  					'Content-Type':'text/xml'
-  				});
-  				response.end(resp.toString());
-  			})
+  			
 
   			client.makeCall(
   			{
