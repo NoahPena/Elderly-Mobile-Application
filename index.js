@@ -47,7 +47,7 @@ app.post('/', function(request, response)
   			
   			app.get('/whatdo', function(request, response)
   			{
-  				resp.say({voice:'woman'}, "Your Uber driver will pick you up at " + streetNumber + " " + street + " at " + newDateObj.toLocaleString());
+  				resp.say({voice:'woman'}, "Your Uber driver will pick you up at " /*+ streetNumber + " " + street + */+ "Island Blvd" +  "at " + newDateObj.toLocaleString());
   				response.writeHead(200, 
   				{
   					'Content-Type':'text/xml'
