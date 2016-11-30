@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var twilio = require('twilio');
 var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef45e3ba1e5049c239435b6a28bb3');
-var request = require('request');
+var Request = require('request');
 var app = express();
 
 app.use(bodyParser.json());
@@ -35,7 +35,7 @@ app.post('/', function(request, response)
 
 	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
 
-	request('http://api.geonames.org/findNearestAddressJSON?lat=' + longititude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
+	Request('http://api.geonames.org/findNearestAddressJSON?lat=' + longititude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
 	{
   		if(!error)
   		{
@@ -63,3 +63,5 @@ app.listen(app.get('port'), function()
 
 
 //LAT=27.714518 LON=-97.328522 SAT=3 PREC=375 CHARS=3227261 SENTENCES=6399 CSUM ERR=1
+//{"number": "+13616882314", "latitude": "27.714518", "longititude": "-97.328522"}
+//elderly-mobile.herokuapp.com
