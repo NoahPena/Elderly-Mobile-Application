@@ -52,13 +52,13 @@ app.post('/', function(request, response)
   				{
   					'Content-Type':'text/xml'
   				});
-  				res.end(resp.toString());
+  				response.end(resp.toString());
   			})
 
   			client.makeCall(
   			{
-  				//to:phoneNumber,
-  				to:'+13612441060',
+  				to:phoneNumber,
+  				//to:'+13612441060',
   				from:'+12569739465',
   				url: 'http://elderly-mobile.herokuapp.com/whatdo'
   			}, function(err, responseData) 
