@@ -7,31 +7,20 @@ const PORT=8080;
 //We need a function which handles requests and send response
 function handleRequest(request, response)
 {
-	console.dir(request.param);
+	response.writeHead(200, {"Content-Type":"text\plain"});
 
-    if (request.method == 'POST') {
-        console.log("POST");
-        var body = '';
-        request.on('data', function (data) {
-            body += data;
-            console.log("Partial body: " + body);
-        });
-        request.on('end', function () {
-            console.log("Body: " + body);
-        });
-        response.writeHead(200, {'Content-Type': 'text/html'});
-        response.end('post received');
+	if(request.method == "GET")
+    {
+            response.end("received GET request.")
+    }
+    else if(request.method == "POST")
+    {
+            response.end("received POST request.");
     }
     else
     {
-        console.log("GET");
-        var html = '<html><body><form method="post" action="http://localhost:3000">Name: <input type="text" name="name" /><input type="submit" value="Submit" /></form></body>';
-        //var html = fs.readFileSync('index.html');
-        response.writeHead(200, {'Content-Type': 'text/html'});
-        response.end(html);
+            response.end("Undefined request .");
     }
-
-    //response.end('It Works!! Path Hit: ' + request.url);
 }
 
 //Create a server
