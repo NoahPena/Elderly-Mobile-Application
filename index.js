@@ -1,5 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var twilio = require('twilio');
+var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef45e3ba1e5049c239435b6a28bb3');
+var request = require('request');
 var app = express();
 
 app.use(bodyParser.json());
@@ -21,6 +24,43 @@ app.post('/', function(request, response)
 {
 	console.log(request.body);
 	response.send(request.body);
+
+	var phoneNumber = request.body.number;
+	var latitude = request.body.latitude;
+	var longititude = request.body.longititude;
+
+	var resp = new twilio.TwimlResponse();
+
+	//getUber();
+
+	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
+
+	request('http://api.geonames.org/findNearestAddressJSON?lat=' + longititude + '&lng=' + longititude + '&username=palagerini', function (error, response, body) 
+	{
+  		if(!error)
+  		{
+  			var street = body.address.street;
+  			var streetNumber = body.address.streetNumber;
+
+  			resp.say({voice:'woman'}, "Your Uber driver will pick you up at " + streetNumber + " " + street + " at " + newDateObj.toLocaleString());
+
+  			client.makeCall(
+  			{
+  				to:phoneNumber,
+  				from:+12569739465,
+  				url:resp
+  			});
+
+  		}
+	});
+
+	
+	client.makeCall(
+	{
+		to:'',
+		from:'',
+		url:''
+	});
 });
 
 app.listen(app.get('port'), function()
