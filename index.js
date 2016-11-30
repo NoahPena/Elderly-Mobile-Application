@@ -41,8 +41,8 @@ app.post('/', function(request, response)
   		{
   			console.log(body);
 
-  			var street = body.address.street;
-  			var streetNumber = body.address.streetNumber;
+  			var street = body.street;
+  			var streetNumber = body.streetNumber;
 
   			resp.say({voice:'woman'}, "Your Uber driver will pick you up at " + streetNumber + " " + street + " at " + newDateObj.toLocaleString());
 
