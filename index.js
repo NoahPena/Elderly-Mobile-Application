@@ -5,6 +5,8 @@ var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef4
 var Request = require('request');
 var app = express();
 
+stupid = bodyParser.json();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(
 {
@@ -33,7 +35,7 @@ app.post('/whatdo', function(request, response)
 	response.end(resp.toString());
 })
 
-app.post('/', function(request, response)
+app.post('/', stupid, function(request, response)
 {
 	console.log("Received: " + request.body);
 	response.send(request.body);
