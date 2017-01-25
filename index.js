@@ -35,7 +35,7 @@ app.post('/whatdo', function(request, response)
 
 app.post('/', function(request, response)
 {
-	console.log(request.body);
+	console.log("Received: " + request.body);
 	response.send(request.body);
 
 	var phoneNumber = request.body.number;
@@ -43,7 +43,7 @@ app.post('/', function(request, response)
 	var longititude = request.body.longititude;
 
 	
-
+	console.log("phoneNumber: " + phoneNumber);
 	//getUber();
 
 	
