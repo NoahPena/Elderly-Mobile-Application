@@ -6,21 +6,19 @@ var Request = require('request');
 var app = express();
 
 
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded(
 {
 	extended: true
 }));
-
-app.set('port', (process.env.PORT || 8080));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.set('port', (process.env.PORT || 8080));
 
 
 
-app.listen(app.get('port'), function()
-{
-		console.log("Now listening on port " + app.get('port'));
-});
+
+
 
 
 
@@ -89,6 +87,11 @@ app.post('/', bodyParser.json(), function(request, response)
 });
 
 
+
+app.listen(app.get('port'), function()
+{
+		console.log("Now listening on port " + app.get('port'));
+});
 
 //LAT=27.714518 LON=-97.328522 SAT=3 PREC=375 CHARS=3227261 SENTENCES=6399 CSUM ERR=1
 //{"number": "+13616882314", "latitude": "27.714518", "longititude": "-97.328522"}
