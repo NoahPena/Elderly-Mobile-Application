@@ -45,7 +45,7 @@ app.post('/whatdo', bodyParser.json(), function(request, response)
 
 app.post('/', bodyParser.json(), function(request, response)
 {
-	console.log("Received: " + request.body);
+	console.log(request.body);
 	response.send(request.body);
 
 	var phoneNumber = request.body.number;
