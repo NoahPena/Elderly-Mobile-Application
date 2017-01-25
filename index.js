@@ -5,16 +5,26 @@ var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef4
 var Request = require('request');
 var app = express();
 
-stupid = bodyParser.json();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded(
+app.configure(function()
 {
-	extended: true
-}));
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded(
+	{
+		extended: true
+	}));
 
-app.set('port', (process.env.PORT || 8080));
-app.use(express.static(__dirname + '/public'));
+	app.set('port', (process.env.PORT || 8080));
+	app.use(express.static(__dirname + '/public'));
+});
+
+
+
+app.listen(app.get('port'), function()
+{
+		console.log("Now listening on port " + app.get('port'));
+});
+
+
 
 
 app.get('/', function(request, response)
@@ -35,7 +45,7 @@ app.post('/whatdo', function(request, response)
 	response.end(resp.toString());
 })
 
-app.post('/', stupid, function(request, response)
+app.post('/', function(request, response)
 {
 	console.log("Received: " + request.body);
 	response.send(request.body);
@@ -80,10 +90,6 @@ app.post('/', stupid, function(request, response)
 
 });
 
-app.listen(app.get('port'), function()
-	{
-		console.log("Now listening on port " + app.get('port'));
-	});
 
 
 //LAT=27.714518 LON=-97.328522 SAT=3 PREC=375 CHARS=3227261 SENTENCES=6399 CSUM ERR=1
