@@ -14,8 +14,7 @@
     "ejs": "2.4.1",
     "express": "4.13.3",
     "request": "2.79.0",
-    "twilio": "1.11.1",
-    "cors": "2.8.1"
+    "twilio": "1.11.1"
   },
   "repository": {
     "type": "git",
