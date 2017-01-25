@@ -5,17 +5,15 @@ var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef4
 var Request = require('request');
 var app = express();
 
-app.configure(function()
-{
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded(
-	{
-		extended: true
-	}));
 
-	app.set('port', (process.env.PORT || 8080));
-	app.use(express.static(__dirname + '/public'));
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded(
+{
+	extended: true
+}));
+
+app.set('port', (process.env.PORT || 8080));
+app.use(express.static(__dirname + '/public'));
 
 
 
