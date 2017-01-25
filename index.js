@@ -30,7 +30,7 @@ app.get('/', function(request, response)
 	response.send("Why Hello There...");
 });
 
-app.post('/whatdo', function(request, response)
+app.post('/whatdo', bodyParser.json(), function(request, response)
 {
 	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
 	var resp = new twilio.TwimlResponse();
@@ -43,7 +43,7 @@ app.post('/whatdo', function(request, response)
 	response.end(resp.toString());
 })
 
-app.post('/', function(request, response)
+app.post('/', bodyParser.json(), function(request, response)
 {
 	console.log("Received: " + request.body);
 	response.send(request.body);
