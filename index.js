@@ -3,15 +3,16 @@ var bodyParser = require('body-parser');
 var twilio = require('twilio');
 var client = new twilio.RestClient('AC27415e72127ed4b9cddb944f188a81ef', '918ef45e3ba1e5049c239435b6a28bb3');
 var Request = require('request');
+var cors = require('cors');
 var app = express();
 
 
-
-app.use(bodyParser.urlencoded(
-{
-	extended: true
-}));
-app.use(bodyParser.json());
+app.use(cors());
+// app.use(bodyParser.urlencoded(
+// {
+// 	extended: true
+// }));
+// app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set('port', (process.env.PORT || 8080));
 
@@ -28,7 +29,7 @@ app.get('/', function(request, response)
 	response.send("Why Hello There...");
 });
 
-app.post('/whatdo', bodyParser.json(), function(request, response)
+app.post('/whatdo', cors(), function(request, response)
 {
 	var newDateObj = new Date(new Date().getTime() + 15 * 60000);
 	var resp = new twilio.TwimlResponse();
@@ -41,7 +42,7 @@ app.post('/whatdo', bodyParser.json(), function(request, response)
 	response.end(resp.toString());
 })
 
-app.post('/', bodyParser.json(), function(request, response)
+app.post('/', cors(), function(request, response)
 {
 	console.log(request.body);
 	response.send(request.body);
